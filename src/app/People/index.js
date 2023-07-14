@@ -1,12 +1,12 @@
-const WookieePeople = require('./wookieePeople');
+const WookieePeople = require("./wookieePeople")
 const CommonPeople = require('./CommonPeople');
 
-const peopleFactory = async (id, lang) => {
+const peopleFactory = async (id, repository, requestHandler, wookieeLang) => {
   let people = null;
-  if (lang == 'wookiee') {
-    people = new WookieePeople(id);
+  if (wookieeLang) {
+    people = new WookieePeople(id, requestHandler);
   } else {
-    people = new CommonPeople(id);
+    people = new CommonPeople(id, repository, requestHandler);
   }
   await people.init();
   return people;
