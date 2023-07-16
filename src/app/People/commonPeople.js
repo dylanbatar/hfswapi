@@ -12,30 +12,27 @@ class CommonPeople extends AbstractPeople {
     let peopleResult = await this.repository.findById(id);
 
     if (!peopleResult) {
-      peopleResult = await this.requestHandler.genericRequest(
-        `${process.env.SWAPI_URL}/people/${id}`,
-        'GET',
-        null,
-        false
-      );
+      peopleResult = await this.requestHandler.genericRequest(`${process.env.SWAPI_URL}/people/${id}`, 'GET', null, false);
 
       this.setHomeworlId(peopleResult.homeworld);
       await this.setHomeworldName();
-      await this.repository.savePeople(peopleResult);
+
+      peopleResult.homeworlId = this.getHomeworlId();
+      peopleResult.homeworldName = this.getHomeworldName();
+
+      await this.repository.savePeople({ ...peopleResult, id });
     }
 
     this.name = peopleResult.name;
     this.mass = +peopleResult.mass;
     this.height = +peopleResult.height;
+    this.homeworlId = peopleResult.homeworlId;
+    this.homeworldName = peopleResult.homeworldName;
   }
 
   async setHomeworldName() {
     const id = this.getHomeworlId();
-    const planetResponse = await this.requestHandler.genericRequest(
-      `${process.env.SWAPI_URL}${id}`,
-      'GET',
-      null
-    );
+    const planetResponse = await this.requestHandler.genericRequest(`${process.env.SWAPI_URL}${id}`, 'GET', null);
     this.homeworldName = planetResponse.name;
   }
 

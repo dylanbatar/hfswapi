@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const swPeople = sequelize.define(
     'swPeople',
     {
-      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+      id: { type: DataTypes.INTEGER, primaryKey: true },
       name: DataTypes.STRING,
       mass: DataTypes.INTEGER,
       height: DataTypes.INTEGER,
