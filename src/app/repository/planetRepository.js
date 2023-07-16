@@ -1,14 +1,14 @@
 class PlanetRepository {
-  constructor(tablet) {
-    this.tablet = tablet;
+  constructor(table) {
+    this.table = table;
   }
 
-  findById(id) {
-    return null;
+  async findById(id) {
+    return await this.table.findOne({ where: { id } });
   }
 
-  savePlanet(id, name, gravity) {
-    return null;
+  async savePlanet(id, name, gravity) {
+    return await this.table.create({ id, name, gravity });
   }
 }
 
