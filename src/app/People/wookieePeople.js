@@ -21,14 +21,6 @@ class WookieePeople extends AbstractPeople {
     this.height = wookieResult.acwoahrracao;
   }
 
-  async getWeightOnPlanet(planetId) {
-    await this.requestHandler.genericRequest(
-      `${process.env.SWAPI_URL}/planets/${planetId}`,
-      'GET',
-      null
-    );
-  }
-
   async setHomeworldName() {
     const id = this.getHomeworlId();
     const planetResponse = await this.requestHandler.genericRequest(

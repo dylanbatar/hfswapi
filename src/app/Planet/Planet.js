@@ -16,9 +16,15 @@ class Planet {
   }
 
   setGravity(gravityString) {
+    if (!gravityString) {
+      this.gravity = null;
+      return;
+    }
+
     const [gravity] = gravityString
       .split(' ')
       .filter((gravities) => Number(gravities));
+
     this.gravity = Number(gravity);
   }
 }

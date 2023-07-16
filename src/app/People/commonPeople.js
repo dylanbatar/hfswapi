@@ -25,16 +25,8 @@ class CommonPeople extends AbstractPeople {
     }
 
     this.name = peopleResult.name;
-    this.mass = peopleResult.mass;
-    this.height = peopleResult.height;
-  }
-
-  async getWeightOnPlanet(planetId) {
-    await this.requestHandler.genericRequest(
-      `${process.env.SWAPI_URL}/planets/${planetId}`,
-      'GET',
-      null
-    );
+    this.mass = +peopleResult.mass;
+    this.height = +peopleResult.height;
   }
 
   async setHomeworldName() {

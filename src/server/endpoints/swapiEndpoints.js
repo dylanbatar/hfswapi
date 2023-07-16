@@ -56,7 +56,26 @@ const applySwapiEndpoints = (server, app) => {
   });
 
   server.get('/hfswapi/getWeightOnPlanetRandom', async (req, res) => {
-    res.sendStatus(501);
+    try {
+      const isWookie = _isWookieeFormat(req);
+      const peopleRepository = new PeopleRepository(app.swPeople);
+      const planetRepository = new PlanetRepository(app.swPlanet);
+      const peopleService = new PeopleService(
+        peopleRepository,
+        app.swapiFunctions
+      );
+
+      const planetService = new PlanetService(
+        planetRepository,
+        app.swapiFunctions
+      );
+
+      const serviceResponse = await peopleService.getWeightOnPlanetRandom(planetService, isWookie);
+
+      res.status(200).json(serviceResponse);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
   });
 
   server.get('/hfswapi/getLogs', async (req, res) => {

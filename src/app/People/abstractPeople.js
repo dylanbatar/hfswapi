@@ -34,8 +34,8 @@ class AbstractPeople {
     return this.homeworlId;
   }
 
-  getWeightOnPlanet(planetId) {
-    throw new Error('To be implemented');
+  getWeightOnPlanet(mass, gravity) {
+    return mass * gravity;
   }
 
   setHomeworlId(url) {
