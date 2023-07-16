@@ -20,7 +20,7 @@ const genericRequest = async (url, method, body, logging = false) => {
 };
 
 const getRandomNumber = (maxLength) => {
-  return Math.floor(Math.random() * maxLength);
+  return Math.floor(Math.random() * (maxLength - 1 + 1)) + 1;
 };
 
 module.exports = {
