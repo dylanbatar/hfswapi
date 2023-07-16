@@ -54,8 +54,8 @@ const applySwapiEndpoints = (server, app) => {
   server.get('/hfswapi/getWeightOnPlanetRandom', async (req, res) => {
     try {
       const isWookie = _isWookieeFormat(req);
-      const peopleRepository = new PeopleRepository(app.swPeople);
-      const planetRepository = new PlanetRepository(app.swPlanet);
+      const peopleRepository = new PeopleRepository(app.db.swPeople);
+      const planetRepository = new PlanetRepository(app.db.swPlanet);
       const peopleService = new PeopleService(
         peopleRepository,
         app.swapiFunctions
