@@ -1,3 +1,5 @@
+const LoggingRepository = require('../../app/repository/loggingRepository');
+
 const loggingMiddleware = (db) => (req, res, next) => {
   const ip = (
     req.headers['x-forwarded-for'] ||
@@ -8,7 +10,13 @@ const loggingMiddleware = (db) => (req, res, next) => {
     .trim();
   const headers = JSON.stringify(req.headers);
   const originalUrl = req.originalUrl;
-  // Persist this info on DB
+
+  const loggingRespository = new LoggingRepository(db);
+
+  loggingRespository
+    .saveLog(ip, headers, originalUrl)
+    .then()
+    .catch(console.error);
   next();
 };
 

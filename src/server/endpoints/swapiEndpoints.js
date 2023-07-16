@@ -1,3 +1,4 @@
+const LoggingRepository = require('../../app/repository/loggingRepository');
 const PeopleRepository = require('../../app/repository/peopleRepository');
 const PlanetRepository = require('../../app/repository/planetRepository');
 const PeopleService = require('../../app/services/peopleService');
@@ -58,7 +59,8 @@ const applySwapiEndpoints = (server, app) => {
   });
 
   server.get('/hfswapi/getLogs', async (req, res) => {
-    const data = await app.db.logging.findAll();
+    const loggingRepository = new LoggingRepository(app.db.logging);
+    const data = await loggingRepository.getLogs();
     res.send(data);
   });
 };
