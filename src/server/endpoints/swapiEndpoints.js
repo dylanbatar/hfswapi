@@ -1,9 +1,5 @@
-const LoggingRepository = require('../../app/repository/loggingRepository');
-const PeopleRepository = require('../../app/repository/peopleRepository');
-const PlanetRepository = require('../../app/repository/planetRepository');
-const LoggingService = require('../../app/services/LoggingService');
-const PeopleService = require('../../app/services/peopleService');
-const PlanetService = require('../../app/services/planetService');
+const { LoggingRepository, PeopleRepository, PlanetRepository } = require('../../app/repository');
+const { LoggingService, PeopleService, PlanetService } = require('../../app/services');
 
 const _isWookieeFormat = (req) => {
   if (req.query.format && req.query.format == 'wookiee') {

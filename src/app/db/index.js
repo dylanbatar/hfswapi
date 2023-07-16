@@ -67,11 +67,17 @@ const watchDB = async () => {
     raw: true,
   });
 
+  const logging = await db.logging.findAll({ });
+
   console.log('============= swPlanet =============');
   console.table(planets);
   console.log('\n');
   console.log('============= swPeople =============');
   console.table(people);
+  console.log('\n');
+  console.log('============= Logging =============');
+  console.table(logging);
+  console.log('\n');
 };
 
 db.initDB = initDB;
