@@ -1,6 +1,7 @@
 const LoggingRepository = require('../../app/repository/loggingRepository');
 const PeopleRepository = require('../../app/repository/peopleRepository');
 const PlanetRepository = require('../../app/repository/planetRepository');
+const LoggingService = require('../../app/services/LoggingService');
 const PeopleService = require('../../app/services/peopleService');
 const PlanetService = require('../../app/services/planetService');
 
@@ -59,9 +60,14 @@ const applySwapiEndpoints = (server, app) => {
   });
 
   server.get('/hfswapi/getLogs', async (req, res) => {
-    const loggingRepository = new LoggingRepository(app.db.logging);
-    const data = await loggingRepository.getLogs();
-    res.send(data);
+    try {
+      const loggingRepository = new LoggingRepository(app.db.logging);
+      const loggingService = new LoggingService(loggingRepository);
+      const serviceResponse = await loggingService.getAllLogs();
+      res.send(serviceResponse);
+    } catch (error) {
+      res.status(500).send(error);
+    }
   });
 };
 
