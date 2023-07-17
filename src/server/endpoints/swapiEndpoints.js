@@ -10,12 +10,7 @@ const _isWookieeFormat = (req) => {
 
 const applySwapiEndpoints = (server, app) => {
   server.get('/hfswapi/test', async (req, res) => {
-    const data = await app.swapiFunctions.genericRequest(
-      'https://swapi.dev/api/',
-      'GET',
-      null,
-      true
-    );
+    const data = await app.swapiFunctions.genericRequest('https://swapi.dev/api/', 'GET', null, true);
     res.send(data);
   });
 
@@ -24,10 +19,7 @@ const applySwapiEndpoints = (server, app) => {
       const { id } = req.params;
       const isWookie = _isWookieeFormat(req);
       const peopleRepository = new PeopleRepository(app.db.swPeople);
-      const peopleService = new PeopleService(
-        peopleRepository,
-        app.swapiFunctions
-      );
+      const peopleService = new PeopleService(peopleRepository, app.swapiFunctions);
       const serviceResponse = await peopleService.getPeople(id, isWookie);
       res.status(200).json(serviceResponse);
     } catch (error) {
@@ -40,10 +32,7 @@ const applySwapiEndpoints = (server, app) => {
       const { id } = req.params;
       const isWookie = _isWookieeFormat(req);
       const planetRepository = new PlanetRepository(app.db.swPlanet);
-      const planetService = new PlanetService(
-        planetRepository,
-        app.swapiFunctions
-      );
+      const planetService = new PlanetService(planetRepository, app.swapiFunctions);
       const serviceResponse = await planetService.getPlanet(id, isWookie);
       res.status(200).json(serviceResponse);
     } catch (error) {
@@ -56,15 +45,9 @@ const applySwapiEndpoints = (server, app) => {
       const isWookie = _isWookieeFormat(req);
       const peopleRepository = new PeopleRepository(app.db.swPeople);
       const planetRepository = new PlanetRepository(app.db.swPlanet);
-      const peopleService = new PeopleService(
-        peopleRepository,
-        app.swapiFunctions
-      );
+      const peopleService = new PeopleService(peopleRepository, app.swapiFunctions);
 
-      const planetService = new PlanetService(
-        planetRepository,
-        app.swapiFunctions
-      );
+      const planetService = new PlanetService(planetRepository, app.swapiFunctions);
 
       const serviceResponse = await peopleService.getWeightOnPlanetRandom(planetService, isWookie);
 
