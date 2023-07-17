@@ -3,5 +3,5 @@ module.exports = {
   moduleFileExtensions: ['js'],
   testMatch: ['**/__tests__/**/*.js'],
   collectCoverage: true,
-  //coverageReporters: ['html', 'text-summary'],
+  coveragePathIgnorePatterns: ['./src/app/People/abstractPeople', './src/app/Planet/Planet'],
 };

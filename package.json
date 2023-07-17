@@ -15,7 +15,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon --watch ./src index.js",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "jest"
   },
   "devDependencies": {
     "eslint": "^8.44.0",
