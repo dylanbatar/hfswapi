@@ -18,7 +18,7 @@ describe('PeopleRepository', () => {
   });
 
   describe('findById', () => {
-    test('should call table.findOne with the correct id', async () => {
+    it('should call table.findOne with the correct id', async () => {
       const id = 1;
 
       await peopleRepository.findById(id);
@@ -27,7 +27,7 @@ describe('PeopleRepository', () => {
       expect(mockTable.findOne).toHaveBeenCalledWith({ where: { id } });
     });
 
-    test('should return null if result is falsy', async () => {
+    it('should return null if result is falsy', async () => {
       const id = 1;
 
       mockTable.findOne.mockResolvedValue(null);
@@ -37,7 +37,7 @@ describe('PeopleRepository', () => {
       expect(result).toBeNull();
     });
 
-    test('should map result to expected object', async () => {
+    it('should map result to expected object', async () => {
       const id = 1;
       const mockResult = {
         id,
@@ -65,7 +65,7 @@ describe('PeopleRepository', () => {
   });
 
   describe('savePeople', () => {
-    test('should call table.create with the correct parameters', async () => {
+    it('should call table.create with the correct parameters', async () => {
       const people = {
         id: 1,
         name: 'Luke Skywalker',
