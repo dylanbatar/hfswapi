@@ -17,6 +17,9 @@ const applySwapiEndpoints = (server, app) => {
   server.get('/hfswapi/getPeople/:id', async (req, res) => {
     try {
       const { id } = req.params;
+
+      if (isNaN(id)) return res.status(400).json({ error: 'ID: should be a number' });
+
       const isWookie = _isWookieeFormat(req);
       const peopleRepository = new PeopleRepository(app.db.swPeople);
       const peopleService = new PeopleService(peopleRepository, app.swapiFunctions);
@@ -30,6 +33,9 @@ const applySwapiEndpoints = (server, app) => {
   server.get('/hfswapi/getPlanet/:id', async (req, res) => {
     try {
       const { id } = req.params;
+
+      if (isNaN(id)) return res.status(400).json({ error: 'ID: should be a number' });
+
       const isWookie = _isWookieeFormat(req);
       const planetRepository = new PlanetRepository(app.db.swPlanet);
       const planetService = new PlanetService(planetRepository, app.swapiFunctions);
@@ -50,6 +56,10 @@ const applySwapiEndpoints = (server, app) => {
       const planetService = new PlanetService(planetRepository, app.swapiFunctions);
 
       const serviceResponse = await peopleService.getWeightOnPlanetRandom(planetService, isWookie);
+
+      if (serviceResponse.error) {
+        return res.status(500).json(serviceResponse);
+      }
 
       res.status(200).json(serviceResponse);
     } catch (error) {
