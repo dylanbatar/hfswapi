@@ -66,3 +66,20 @@ El presente código despliega un servidor node.js/express sobre el que se busca 
 > - ip: Dirección IP desde donde se realiza la llamada
 
 Adicionalmente a estos endpoints, se requiere ampliar el paquete `People` con las clases y funciones que sean necesarias para cubrir el caso de que el formato del objeto retornado por la SWAPI sea en idioma Wookiee.
+
+#### Variables de entorno
+```
+NODE_ENV='develop'
+PORT=4567
+SWAPI_URL=https://swapi.dev/api
+PLANETS_COUNT=60
+CHARACTERS_COUNT=82
+```
+
+## Liberias adiciones
+- jest: Suit de test
+- eslint: Analizar el codigo y evitar errores comunes
+- prettier: Definir las reglas de formateo del proyecto
+
+## Docker
+El proyecto tiene un docker-compose para ejecutar solo ejecutar `docker-compose up`
