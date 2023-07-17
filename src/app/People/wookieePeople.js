@@ -17,8 +17,8 @@ class WookieePeople extends AbstractPeople {
     await this.setHomeworldName();
 
     this.name = wookieResult.whrascwo;
-    this.mass = wookieResult.scracc;
-    this.height = wookieResult.acwoahrracao;
+    this.mass = +wookieResult.scracc;
+    this.height = +wookieResult.acwoahrracao;
   }
 
   async setHomeworldName() {
