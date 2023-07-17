@@ -1,5 +1,5 @@
 const WookieePeople = require("./wookieePeople")
-const CommonPeople = require('./CommonPeople');
+const CommonPeople = require('./commonPeople');
 
 const peopleFactory = async (id, repository, requestHandler, wookieeLang) => {
   let people = null;
