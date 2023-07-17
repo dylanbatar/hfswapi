@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    browser: true,
+    browser: false,
     commonjs: true,
     es2021: true,
   },
@@ -19,5 +19,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
-  rules: {},
+  rules: {
+    "no-undef": "off",
+    "max-len": ["error", { "code": 180 }]
+  },
 };
