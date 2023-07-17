@@ -20,6 +20,10 @@ const applySwapiEndpoints = (server, app) => {
 
       if (isNaN(id)) return res.status(400).json({ error: 'ID: should be a number' });
 
+      if (Number(id) > process.env.CHARACTERS_COUNT || Number(id) === 0) {
+        return res.status(400).json({ error: 'the id must be greater than zero but less than 82' });
+      }
+
       const isWookie = _isWookieeFormat(req);
       const peopleRepository = new PeopleRepository(app.db.swPeople);
       const peopleService = new PeopleService(peopleRepository, app.swapiFunctions);
@@ -35,6 +39,10 @@ const applySwapiEndpoints = (server, app) => {
       const { id } = req.params;
 
       if (isNaN(id)) return res.status(400).json({ error: 'ID: should be a number' });
+
+      if (Number(id) > process.env.PLANETS_COUNT || Number(id) === 0) {
+        return res.status(400).json({ error: 'the id must be greater than zero but less than 60' });
+      }
 
       const isWookie = _isWookieeFormat(req);
       const planetRepository = new PlanetRepository(app.db.swPlanet);
